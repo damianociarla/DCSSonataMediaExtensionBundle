@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="dcs_sonata_media_extension.thumbnail.format.class">DCS\SonataMediaExtensionBundle\Thumbnail\FormatThumbnail</parameter>
+
+        <parameter key="dcs_sonata_media_extension.provider.youtube.class">DCS\SonataMediaExtensionBundle\Provider\YouTubeProvider</parameter>
+        <parameter key="dcs_sonata_media_extension.provider.dailymotion.class">DCS\SonataMediaExtensionBundle\Provider\DailyMotionProvider</parameter>
+        <parameter key="dcs_sonata_media_extension.provider.vimeo.class">DCS\SonataMediaExtensionBundle\Provider\VimeoProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="sonata.media.thumbnail.format" class="%dcs_sonata_media_extension.thumbnail.format.class%">
+            <argument>%sonata.media.thumbnail.format.default%</argument>
+            <argument>%dcs_sonata_media_extension.on_demand_thumb%</argument>
+        </service>
+
+        <service id="sonata.media.provider.youtube" class="%dcs_sonata_media_extension.provider.youtube.class%">
+            <tag name="sonata.media.provider" />
+            <argument>sonata.media.provider.youtube</argument>
+            <argument />
+            <argument />
+            <argument />
+            <argument type="service" id="sonata.media.thumbnail.format" />
+            <argument type="service" id="sonata.media.buzz.browser" />
+            <argument type="service" id="sonata.media.metadata.proxy" />
+            <argument />
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key='helper_thumbnail'>SonataMediaBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>SonataMediaBundle:Provider:view_youtube.html.twig</argument>
+                </argument>
+            </call>
+            <call method="setOnDemandSettings">
+                <argument>%dcs_sonata_media_extension.on_demand_thumb%</argument>
+            </call>
+        </service>
+
+        <service id="sonata.media.provider.dailymotion" class="%dcs_sonata_media_extension.provider.dailymotion.class%">
+            <tag name="sonata.media.provider" />
+            <argument>sonata.media.provider.dailymotion</argument>
+            <argument />
+            <argument />
+            <argument />
+            <argument type="service" id="sonata.media.thumbnail.format" />
+            <argument type="service" id="sonata.media.buzz.browser" />
+            <argument type="service" id="sonata.media.metadata.proxy" />
+
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key='helper_thumbnail'>SonataMediaBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>SonataMediaBundle:Provider:view_dailymotion.html.twig</argument>
+                </argument>
+            </call>
+            <call method="setOnDemandSettings">
+                <argument>%dcs_sonata_media_extension.on_demand_thumb%</argument>
+            </call>
+        </service>
+
+        <service id="sonata.media.provider.vimeo" class="%dcs_sonata_media_extension.provider.vimeo.class%">
+            <tag name="sonata.media.provider" />
+            <argument>sonata.media.provider.vimeo</argument>
+            <argument />
+            <argument />
+            <argument />
+            <argument type="service" id="sonata.media.thumbnail.format" />
+            <argument type="service" id="sonata.media.buzz.browser" />
+            <argument type="service" id="sonata.media.metadata.proxy" />
+
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key='helper_thumbnail'>SonataMediaBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>SonataMediaBundle:Provider:view_vimeo.html.twig</argument>
+                </argument>
+            </call>
+            <call method="setOnDemandSettings">
+                <argument>%dcs_sonata_media_extension.on_demand_thumb%</argument>
+            </call>
+        </service>
+    </services>
+</container>

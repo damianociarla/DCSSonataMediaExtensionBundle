@@ -1,0 +1,24 @@
+{
+    "name": "damianociarla/sonata-media-extension-bundle",
+    "description": "This Bundle adds features to SonataMediaBundle",
+    "type": "library",
+    "keywords": [
+        "symfony2","sonata","media","thumbnail","ondemand"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/damianociarla/DCSSonataMediaExtensionBundle",
+    "authors": [
+        {
+            "name": "Damiano Ciarla",
+            "email": "damiano.ciarla@gmail.com",
+            "homepage": "http://www.damianociarla.it/"
+        }
+    ],
+    "require": {
+        "sonata-project/media-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "DCS\\SonataMediaExtensionBundle": "" }
+    },
+    "target-dir": "DCS/SonataMediaExtensionBundle"
+}
