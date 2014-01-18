@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "sonata-project/media-bundle": "dev-master"
+        "sonata-project/media-bundle": "2.2.*@dev"
     },
     "autoload": {
         "psr-0": { "DCS\\SonataMediaExtensionBundle": "" }
